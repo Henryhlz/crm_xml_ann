@@ -1,15 +1,16 @@
-package com.itheima.service;
+package com.hlz.dao;
 
-import com.itheima.domain.CstCustomer;
+import com.hlz.domain.CstCustomer;
 
 import java.util.List;
 
 /**
- * 客户业务层接口
+ * 客户持久层接口
  *
  * @author Henryhlz
  */
-public interface ICustomerService {
+public interface ICustomerDao {
+
     /**
      * 保存客户
      */

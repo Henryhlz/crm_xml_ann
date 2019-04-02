@@ -10,7 +10,7 @@
               method="{1}"里面的{1}就是代表addCustomer()方法,
               这个addCustomer()方法存在于 CustomerAction中
         -->
-        <action name="customerAction!*" class="com.itheima.action.CustomerAction" method="{1}">
+        <action name="customerAction!*" class="com.hlz.action.CustomerAction" method="{1}">
             <result name="addCustomer">/jsp/customer/add.jsp</result>
             <result name="findAllCustomer">/jsp/customer/list.jsp</result>
         </action>

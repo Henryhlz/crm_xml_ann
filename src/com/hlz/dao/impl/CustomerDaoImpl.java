@@ -1,7 +1,7 @@
-package com.itheima.dao.impl;
+package com.hlz.dao.impl;
 
-import com.itheima.dao.ICustomerDao;
-import com.itheima.domain.CstCustomer;
+import com.hlz.dao.ICustomerDao;
+import com.hlz.domain.CstCustomer;
 import org.springframework.orm.hibernate5.HibernateTemplate;
 
 import java.util.List;

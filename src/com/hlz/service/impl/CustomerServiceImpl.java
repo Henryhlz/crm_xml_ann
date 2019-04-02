@@ -1,8 +1,8 @@
-package com.itheima.service.impl;
+package com.hlz.service.impl;
 
-import com.itheima.dao.ICustomerDao;
-import com.itheima.domain.CstCustomer;
-import com.itheima.service.ICustomerService;
+import com.hlz.dao.ICustomerDao;
+import com.hlz.domain.CstCustomer;
+import com.hlz.service.ICustomerService;
 
 import java.util.List;
 

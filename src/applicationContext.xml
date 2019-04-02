@@ -14,11 +14,11 @@
        http://www.springframework.org/schema/aop/spring-aop.xsd">
 
     <!-- 配置客户实体类service-->
-    <bean id="customerService" class="com.itheima.service.impl.CustomerServiceImpl">
+    <bean id="customerService" class="com.hlz.service.impl.CustomerServiceImpl">
         <property name="customerDao" ref="customerDao"></property>
     </bean>
     <!-- 配置客户实体类dao-->
-    <bean id="customerDao" class="com.itheima.dao.impl.CustomerDaoImpl">
+    <bean id="customerDao" class="com.hlz.dao.impl.CustomerDaoImpl">
         <property name="hibernateTemplate" ref="hibernateTemplate"></property>
     </bean>
     <!-- 配置hibernateTemplate-->
@@ -49,7 +49,7 @@
     <!-- 配置aop-->
     <aop:config>
         <!-- 配置切入点表达式-->
-        <aop:pointcut id="pt1" expression="execution(* com.itheima.service.impl.*.*(..))"></aop:pointcut>
+        <aop:pointcut id="pt1" expression="execution(* com.hlz.service.impl.*.*(..))"></aop:pointcut>
         <!--建立切入点表达式和事务通知的关联-->
         <aop:advisor advice-ref="txAdvice" pointcut-ref="pt1"></aop:advisor>
     </aop:config>

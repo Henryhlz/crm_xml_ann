@@ -4,7 +4,7 @@
         "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
 
-    <class name="com.itheima.domain.BaseDict" table="base_dict" schema="crm">
+    <class name="com.hlz.domain.BaseDict" table="base_dict" schema="crm">
         <id name="dictId" column="dict_id"/>
         <property name="dictTypeCode" column="dict_type_code"/>
         <property name="dictTypeName" column="dict_type_name"/>

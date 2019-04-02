@@ -4,7 +4,7 @@
         "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
 
-    <class name="com.itheima.domain.CstLinkman" table="cst_linkman" schema="crm">
+    <class name="com.hlz.domain.CstLinkman" table="cst_linkman" schema="crm">
         <id name="lkmId" column="lkm_id"/>
         <property name="lkmName" column="lkm_name"/>
         <property name="lkmGender" column="lkm_gender"/>

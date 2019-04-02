@@ -1,4 +1,4 @@
-package com.itheima.domain;
+package com.hlz.domain;
 
 import javax.persistence.*;
 import java.util.Objects;

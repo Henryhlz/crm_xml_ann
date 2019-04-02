@@ -33,11 +33,11 @@
         </property>
 
         <!--第三部分 指定所有的映射文件 -->
-        <mapping resource="com/itheima/domain/BaseDict.hbm.xml"/>
-        <mapping class="com.itheima.domain.BaseDict"/>
-        <mapping resource="com/itheima/domain/CstCustomer.hbm.xml"/>
-        <mapping class="com.itheima.domain.CstCustomer"/>
-        <mapping resource="com/itheima/domain/CstLinkman.hbm.xml"/>
-        <mapping class="com.itheima.domain.CstLinkman"/>
+        <mapping resource="com/hlz/domain/BaseDict.hbm.xml"/>
+        <mapping class="com.hlz.domain.BaseDict"/>
+        <mapping resource="com/hlz/domain/CstCustomer.hbm.xml"/>
+        <mapping class="com.hlz.domain.CstCustomer"/>
+        <mapping resource="com/hlz/domain/CstLinkman.hbm.xml"/>
+        <mapping class="com.hlz.domain.CstLinkman"/>
     </session-factory>
 </hibernate-configuration>

@@ -1,6 +1,4 @@
-package com.itheima.domain;
-
-import org.hibernate.annotations.GeneratorType;
+package com.hlz.domain;
 
 import javax.persistence.*;
 import java.util.Objects;

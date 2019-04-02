@@ -1,6 +1,6 @@
-package com.itheima.test;
+package com.hlz.test;
 
-import com.itheima.service.impl.CustomerServiceImpl;
+import com.hlz.service.impl.CustomerServiceImpl;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 

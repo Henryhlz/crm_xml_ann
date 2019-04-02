@@ -26,7 +26,7 @@
 
 
     <!--
-       <class name="com.itheima.domain.CstCustomer" table="cst_customer" schema="crm"></class>
+       <class name="com.hlzain.CstCustomer" table="cst_customer" schema="crm"></class>
         <id>：定义了该属性到数据库表主键字段的映射。
         type  指定该标识属性的数据类型，该类型可以是Hibernate的内建类型，也可以是java类型，如果是java类型则需要使用全限定类名（带包名）。该属性可选，如果没有指定类型， 则hibernate自行判断该标识属性数据类型。通常建议设定。
         name="userId"：标识属性的名字；

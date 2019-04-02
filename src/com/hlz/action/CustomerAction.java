@@ -1,7 +1,7 @@
-package com.itheima.action;
+package com.hlz.action;
 
-import com.itheima.domain.CstCustomer;
-import com.itheima.service.ICustomerService;
+import com.hlz.domain.CstCustomer;
+import com.hlz.service.ICustomerService;
 import com.opensymphony.xwork2.ActionSupport;
 
 

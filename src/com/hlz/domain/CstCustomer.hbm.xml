@@ -4,7 +4,7 @@
         "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
 
-    <class name="com.itheima.domain.CstCustomer" table="cst_customer" schema="crm">
+    <class name="com.hlz.domain.CstCustomer" table="cst_customer" schema="crm">
         <id name="custId" column="cust_id">
             <generator class="native"></generator>
         </id>

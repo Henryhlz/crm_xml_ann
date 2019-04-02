@@ -1,7 +1,7 @@
-package com.itheima.test;
+package com.hlz.test;
 
 
-import com.itheima.domain.CstCustomer;
+import com.hlz.domain.CstCustomer;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
