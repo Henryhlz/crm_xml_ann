@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+        <!--第一部分 配置链接数据库的信息 -->
+        <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/crm?useUnicode=true&amp;characterEncoding=utf8&amp;useSSL=false</property>
+        <property name="hibernate.connection.username">root</property>
+        <property name="hibernate.connection.password">root</property>
+
+        <!-- 第二部分 hibernate的可选配置 -->
+        <!--
+              在ssh2中的sessionFactory配置文件中应将hibernate.current_session_context_class
+              设为org.springframework.orm.hibernate3.SpringSessionContext（默认为此值）,可以不配置，并应用spring管理事务。
+              如果为<prop key="hibernate.current_session_context_class">thread</prop> 则会报异常.
+              value为:
+              1:org.springframework.orm.hibernate3.SpringSessionContext针对spring
+              2:thread针对hibernate
+        -->
+        <!--<property name="current_session_context_class">thread</property>-->
+        <!-- hibernate所使用的的数据库方言  -->
+        <property name="dialect">org.hibernate.dialect.MySQLDialect</property>
+        <!--  执行操作是否在控制台打印SQL -->
+        <property name="show_sql">true</property>
+        <!-- 是否对SQL进行格式化 -->
+        <property name="format_sql">true</property>
+        <!-- 指定自动生成数据表的策略:在运行数据库的时候hibernate会为我们在数据库自动生成数据表的策略 -->
+        <property name="hbm2ddl.auto">update</property>
+        <!-- 指定连接池的供应商 -->
+        <property name="hibernate.connection.provider_class">org.hibernate.c3p0.internal.C3P0ConnectionProvider
+        </property>
+
+        <!--第三部分 指定所有的映射文件 -->
+        <mapping resource="com/itheima/domain/BaseDict.hbm.xml"/>
+        <mapping class="com.itheima.domain.BaseDict"/>
+        <mapping resource="com/itheima/domain/CstCustomer.hbm.xml"/>
+        <mapping class="com.itheima.domain.CstCustomer"/>
+        <mapping resource="com/itheima/domain/CstLinkman.hbm.xml"/>
+        <mapping class="com.itheima.domain.CstLinkman"/>
+    </session-factory>
+</hibernate-configuration>
