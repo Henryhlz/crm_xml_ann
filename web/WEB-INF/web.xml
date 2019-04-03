@@ -14,7 +14,7 @@
     <!-- 手动引入spring的 applicationContext.xml 的位置-->
     <context-param>
         <param-name>contextConfigLocation</param-name>
-        <param-value>classpath:/applicationContext.xml</param-value>
+        <param-value>classpath:/config/spring/applicationContext.xml</param-value>
     </context-param>
     <!--配置struts2和核心过滤器-->
     <filter>

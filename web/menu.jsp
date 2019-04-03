@@ -132,14 +132,14 @@
                                 <TR>
                                     <TD class=menuSmall>
                                         <A class=style2
-                                           href="${pageContext.request.contextPath}/customer/customerAction!addCustomer.action"
+                                           href="${pageContext.request.contextPath}/customer/addCustomerPage.action"
                                            target=main>－ 新增客户</A>
                                     </TD>
                                 </TR>
                                 <TR>
                                     <TD class=menuSmall>
                                         <A class=style2
-                                           href="${pageContext.request.contextPath}/customer/customerAction!findAllCustomer.action"
+                                           href="${pageContext.request.contextPath}/customer/findAllCustomer.action"
                                            target=main>－ 客户列表</A>
                                     </TD>
                                 </TR>
