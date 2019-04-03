@@ -32,7 +32,7 @@ import com.opensymphony.xwork2.util.location.LocatableProperties;
  * <param-name>config</param-name>
  * <param-value>struts-default.xml,struts-plugin.xml,config/struts/struts.xml</param-value>
  * </init-param>
- * 自动扫描加载Struts2.配置文件的工具类
+ * 自动扫描加载Struts2其他配置文件的工具类
  * <init-param>
  * <param-name>configProviders</param-name>
  * <param-value>com.framework.struts2filter.CutomConfigurationProvider</param-value>
