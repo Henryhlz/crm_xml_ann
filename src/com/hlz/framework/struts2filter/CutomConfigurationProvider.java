@@ -42,6 +42,9 @@ import com.opensymphony.xwork2.util.location.LocatableProperties;
  * @author Henryhlz
  */
 public class CutomConfigurationProvider extends XmlConfigurationProvider {
+    /*
+    项目中struts2的配置文件目录
+     */
     private static final String FILE_PATTERN = "classpath*:config/struts/*/struts-*.xml";
 
     public CutomConfigurationProvider() {
