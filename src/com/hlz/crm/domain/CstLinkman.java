@@ -117,4 +117,18 @@ public class CstLinkman {
     public int hashCode() {
         return Objects.hash(lkmId, lkmName, lkmGender, lkmPhone, lkmMobile, lkmEmail, lkmPosition, lkmMemo);
     }
+
+    @Override
+    public String toString() {
+        return "CstLinkman{" +
+                "lkmId=" + lkmId +
+                ", lkmName='" + lkmName + '\'' +
+                ", lkmGender='" + lkmGender + '\'' +
+                ", lkmPhone='" + lkmPhone + '\'' +
+                ", lkmMobile='" + lkmMobile + '\'' +
+                ", lkmEmail='" + lkmEmail + '\'' +
+                ", lkmPosition='" + lkmPosition + '\'' +
+                ", lkmMemo='" + lkmMemo + '\'' +
+                '}';
+    }
 }

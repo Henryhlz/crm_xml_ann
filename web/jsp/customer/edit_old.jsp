@@ -1,6 +1,5 @@
 ﻿<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%--<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>--%>
-<%@ taglib uri="/struts-tags" prefix="s" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -11,9 +10,9 @@
     <META content="MSHTML 6.00.2900.3492" name=GENERATOR>
 </HEAD>
 <BODY>
-<s:debug></s:debug>
-<s:form action="editCustomer" namespace="/customer">
-    <s:hidden name="customer.custId"></s:hidden>
+<FORM id=form1 name=form1 action="${pageContext.request.contextPath }customer/CustomerServlet?method=editCustomer"
+      method=post>
+    <input type="hidden" name="custId" value="${customer.custId}">
     <TABLE cellSpacing=0 cellPadding=0 width="98%" border=0>
         <TBODY>
         <TR>
@@ -42,39 +41,43 @@
                     <TR>
                         <td>客户名称：</td>
                         <td>
-                            <s:textfield class="textbox" id="sChannel2" style="WIDTH: 180px" maxLength="50"
-                                         name="customer.custName"></s:textfield>
+                            <INPUT class=textbox id=sChannel2 style="WIDTH: 180px" maxLength=50 name="custName"
+                                   value="${customer.custName}">
                         </td>
                         <td>所属行业 ：</td>
                         <td>
-                            <s:textfield class="textbox" id="sChannel2" style="WIDTH: 180px" maxLength="50"
-                                         name="customer.custIndustry"></s:textfield>
+                            <INPUT class=textbox id=sChannel2 style="WIDTH: 180px" maxLength=50 name="custIndustry"
+                                   value="${customer.custIndustry}">
                         </td>
                     </TR>
                     <TR>
                         <td>信息来源 ：</td>
                         <td>
-                            <s:select name="customer.custSource.dictId" list="custSources" listKey="dictId"
-                                      listValue="dictItemName" headerKey="" headerValue="---请选择---" class="textbox"
-                                      id="sChannel2" style="WIDTH: 180px"></s:select>
+                            <select name="custSource" class=textbox id=sChannel2 style="WIDTH: 180px">
+                                <option value="non">---请选择---</option>
+                                <option value="6" ${customer.custSource=="6"?"selected":""}>电话营销</option>
+                                <option value="7" ${customer.custSource=="7"?"selected":""}>网络营销</option>
+                            </select>
                         </td>
                         <td>客户级别：</td>
                         <td>
-                            <s:select name="customer.custLevel.dictId" list="custLevels" listKey="dictId"
-                                      listValue="dictItemName" headerKey="" headerValue="---请选择---" class="textbox"
-                                      id="sChannel2" style="WIDTH: 180px"></s:select>
+                            <select name="custLevel" class=textbox id=sChannel2 style="WIDTH: 180px">
+                                <option value="non">---请选择---</option>
+                                <option value="22" ${customer.custLevel=="22"?"selected":""}>普通客户</option>
+                                <option value="23" ${customer.custLevel=="23"?"selected":""}>VIP客户</option>
+                            </select>
                         </td>
                     </TR>
                     <TR>
                         <td>联系地址 ：</td>
                         <td>
-                            <s:textfield class="textbox" id="sChannel2" style="WIDTH: 180px" maxLength="50"
-                                         name="customer.custAddress"></s:textfield>
+                            <INPUT class=textbox id=sChannel2 style="WIDTH: 180px" maxLength=50 name="custAddress"
+                                   value="${customer.custAddress}">
                         </td>
                         <td>联系电话 ：</td>
                         <td>
-                            <s:textfield class="textbox" id="sChannel2" style="WIDTH: 180px" maxLength="50"
-                                         name="customer.custPhone"></s:textfield>
+                            <INPUT class=textbox id=sChannel2 style="WIDTH: 180px" maxLength=50 name="custPhone"
+                                   value="${customer.custPhone}">
                         </td>
                     </TR>
                     <tr>
@@ -100,6 +103,6 @@
         </TR>
         </TBODY>
     </TABLE>
-</s:form>
+</FORM>
 </BODY>
 </HTML>

@@ -4,6 +4,15 @@
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
          version="4.0">
     <display-name>crm</display-name>
+    <!-- 配置spring提供的过滤器，用于保证视图中仍然可以使用session -->
+    <filter>
+        <filter-name>openSessionInViewFilter</filter-name>
+        <filter-class>org.springframework.orm.hibernate5.support.OpenSessionInViewFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>openSessionInViewFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
     <!-- 通知web容器 加载的配置文件的名称 -->
     <!-- 加载spring监听器 ,用监听ServletContext对象创建,同时为我们创建spring容器
            默认加载位置是WEB-INF目录下的spring配置文件，而且名称必须为applicationContext.xml
@@ -20,6 +29,10 @@
     <filter>
         <filter-name>struts2</filter-name>
         <filter-class>org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter</filter-class>
+        <init-param>
+            <param-name>struts.ui.theme</param-name>
+            <param-value>simple</param-value>
+        </init-param>
     </filter>
     <filter-mapping>
         <filter-name>struts2</filter-name>

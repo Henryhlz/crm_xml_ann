@@ -117,4 +117,18 @@ public class BaseDict {
     public int hashCode() {
         return Objects.hash(dictId, dictTypeCode, dictTypeName, dictItemName, dictItemCode, dictSort, dictEnable, dictMemo);
     }
+
+    @Override
+    public String toString() {
+        return "BaseDict{" +
+                "dictId='" + dictId + '\'' +
+                ", dictTypeCode='" + dictTypeCode + '\'' +
+                ", dictTypeName='" + dictTypeName + '\'' +
+                ", dictItemName='" + dictItemName + '\'' +
+                ", dictItemCode='" + dictItemCode + '\'' +
+                ", dictSort=" + dictSort +
+                ", dictEnable='" + dictEnable + '\'' +
+                ", dictMemo='" + dictMemo + '\'' +
+                '}';
+    }
 }

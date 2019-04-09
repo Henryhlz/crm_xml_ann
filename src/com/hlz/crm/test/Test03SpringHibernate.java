@@ -2,6 +2,7 @@ package com.hlz.crm.test;
 
 import com.hlz.crm.domain.CstCustomer;
 import com.hlz.crm.service.ICustomerService;
+import org.hibernate.criterion.DetachedCriteria;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +32,8 @@ public class Test03SpringHibernate {
 
     @Test
     public void testfindAll() {
-        List list = customerService.findAllCustomer();
+        DetachedCriteria criteria = DetachedCriteria.forClass(CstCustomer.class);
+        List list = customerService.findAllCustomer(criteria);
         for (Object o : list) {
             System.out.println(o);
         }

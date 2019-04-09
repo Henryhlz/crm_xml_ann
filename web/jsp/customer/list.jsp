@@ -1,5 +1,6 @@
 ﻿<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%--<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>--%>
+<%@ taglib prefix="s" uri="/struts-tags" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -10,18 +11,18 @@
           rel=stylesheet>
     <script type="text/javascript" src="${pageContext.request.contextPath }/js/jquery-1.4.4.min.js"></script>
     <SCRIPT language=javascript>
-        function to_page(page) {
-            if (page) {
-                $("#page").val(page);
+        function removeCustomer(custId) {
+            var sure = window.confirm("确定删除吗");
+            if (sure) {
+                window.location.href = "${pageContext.request.contextPath }/customer/removeCustomer.action?customer.custId=" + custId;
             }
-            document.customerForm.submit();
         }
     </SCRIPT>
     <META content="MSHTML 6.00.2900.3492" name=GENERATOR>
 </HEAD>
 <BODY>
-<FORM id="customerForm" name="customerForm"
-      action="${pageContext.request.contextPath }/customer/CustomerServlet?method=listCustomer" method=post>
+<s:debug></s:debug>
+<s:form namespace="/customer" action="findAllCustomer">
     <TABLE cellSpacing=0 cellPadding=0 width="98%" border=0>
         <TBODY>
         <TR>
@@ -53,10 +54,29 @@
                             <TABLE cellSpacing=0 cellPadding=2 border=0>
                                 <TBODY>
                                 <TR>
-                                    <TD>客户名称：</TD>
-                                    <TD><INPUT class=textbox id=sChannel2 style="WIDTH: 80px" maxLength=50
-                                               name="custName"></TD>
-                                    <TD><INPUT class=button id=sButton2 type=submit value=" 筛选 " name=sButton2></TD>
+                                    <td>客户名称：</td>
+                                    <td>
+                                        <s:textfield class="textbox" id="sChannel2" style="WIDTH: 180px" maxLength="50"
+                                                     name="customer.custName"></s:textfield>
+                                    </td>
+                                    <td>所属行业 ：</td>
+                                    <td>
+                                        <s:textfield class="textbox" id="sChannel2" style="WIDTH: 180px" maxLength="50"
+                                                     name="customer.custIndustry"></s:textfield>
+                                    </td>
+                                    <td>信息来源 ：</td>
+                                    <td>
+                                        <s:select name="customer.custSource.dictId" list="custSources" listKey="dictId"
+                                                  listValue="dictItemName" headerKey="" headerValue="---请选择---"
+                                                  class="textbox" id="sChannel2" style="WIDTH: 180px"></s:select>
+                                    </td>
+                                    <td>客户级别：</td>
+                                    <td>
+                                        <s:select name="customer.custLevel.dictId" list="custLevels" listKey="dictId"
+                                                  listValue="dictItemName" headerKey="" headerValue="---请选择---"
+                                                  class="textbox" id="sChannel2" style="WIDTH: 180px"></s:select>
+                                    </td>
+                                    <TD><s:submit value=" 筛选 "/></TD>
                                 </TR>
                                 </TBODY>
                             </TABLE>
@@ -77,21 +97,23 @@
                                     <TD>联系电话</TD>
                                     <TD>操作</TD>
                                 </TR>
-                                <c:forEach items="${customers}" var="customer">
+                                <s:iterator value="customers">
                                     <TR style="FONT-WEIGHT: normal; FONT-STYLE: normal; BACKGROUND-COLOR: white; TEXT-DECORATION: none">
-                                        <TD>${customer.custName }</TD>
-                                        <TD>${customer.custLevel }</TD>
-                                        <TD>${customer.custSource }</TD>
-                                        <TD>${customer.custIndustry }</TD>
-                                        <TD>${customer.custAddress }</TD>
-                                        <TD>${customer.custPhone }</TD>
+                                        <TD>${custName }</TD>
+                                        <TD>${custLevel.dictItemName }</TD>
+                                        <TD>${custSource.dictItemName }</TD>
+                                        <TD>${custIndustry }</TD>
+                                        <TD>${custAddress }</TD>
+                                        <TD>${custPhone }</TD>
                                         <TD>
-                                            <a href="${pageContext.request.contextPath }/customer/CustomerServlet?method=editCustomerUI&custId=${customer.custId}">修改</a>
+                                            <s:a action="editCustomerPage" namespace="/customer">
+                                                <s:param name="customer.custId" value="%{custId}"></s:param>
+                                                修改</s:a>
                                             &nbsp;&nbsp;
-                                            <a href="${pageContext.request.contextPath }/customer/CustomerServlet?method=removeCustomer&custId=${customer.custId}">删除</a>
+                                            <s:a href="javascript:removeCustomer('%{custId}')">删除</s:a>
                                         </TD>
                                     </TR>
-                                </c:forEach>
+                                </s:iterator>
                                 </TBODY>
                             </TABLE>
                         </TD>
@@ -139,6 +161,6 @@
         </TR>
         </TBODY>
     </TABLE>
-</FORM>
+</s:form>
 </BODY>
 </HTML>
