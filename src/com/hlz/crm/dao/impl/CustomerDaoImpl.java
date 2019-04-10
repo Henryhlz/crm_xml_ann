@@ -60,4 +60,14 @@ public class CustomerDaoImpl implements ICustomerDao {
     public CstCustomer findById(long custId) {
         return hibernateTemplate.load(CstCustomer.class, custId);
     }
+
+    /**
+     * 投影查询客户列表
+     *
+     * @return
+     */
+    @Override
+    public List<CstCustomer> findAll() {
+        return (List<CstCustomer>) hibernateTemplate.find("select new CstCustomer(custId,custName) from CstCustomer");
+    }
 }

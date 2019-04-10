@@ -1,6 +1,6 @@
 ﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="/struts-tags" prefix="s" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -14,9 +14,10 @@
     <META content="MSHTML 6.00.2900.3492" name=GENERATOR>
 </HEAD>
 <BODY>
-<FORM id=form1 name=form1 action="${pageContext.request.contextPath }/linkman/LinkManServlet?method=editLinkMan"
+<s:debug></s:debug>
+<FORM id=form1 name=form1 action="${pageContext.request.contextPath }/linkman/editLinkMan.action"
       method=post>
-    <input type="hidden" name="lkmId" value="${linkMan.lkmId}">
+    <s:hidden name="linkman.lkmId"/>
     <TABLE cellSpacing=0 cellPadding=0 width="98%" border=0>
         <TBODY>
         <TR>
@@ -42,53 +43,59 @@
                     </TR>
                 </TABLE>
                 <TABLE cellSpacing=0 cellPadding=5 border=0>
-                    <!-- <tr>
+                    <tr>
                         <td>所属客户：</td>
                         <td colspan="3">
-                            <input type="text" name="custId" value="1" style="WIDTH: 180px"/>
+                            <s:select name="linkman.customer.custId" list="customers"
+                                      listKey="custId" listValue="custName"
+                                      headerKey="" headerValue="---请选择---"
+                                      class="textbox" style="WIDTH: 180px" id="sChannel2"></s:select>
+
                         </td>
-                    </tr> -->
+                    </tr>
                     <TR>
                         <td>联系人名称：</td>
                         <td>
-                            <INPUT class=textbox id=sChannel2 style="WIDTH: 180px" maxLength=50 name="lkmName"
-                                   value="${linkMan.lkmName }">
+                            <INPUT class=textbox id=sChannel2 style="WIDTH: 180px" maxLength=50 name="linkman.lkmName"
+                                   value="${linkman.lkmName}">
                         </td>
                         <td>联系人性别：</td>
                         <td>
-                            <input type="radio" value="1" name="lkmGender" ${linkMan.lkmGender=="1"?"checked":""}>男
-                            <input type="radio" value="2" name="lkmGender" ${linkMan.lkmGender=="2"?"checked":""}>女
+                            <input type="radio" value="male"
+                                   name="linkman.lkmGender" ${linkman.lkmGender=="male"?"checked":"" }>男
+                            <input type="radio" value="female"
+                                   name="linkman.lkmGender" ${linkman.lkmGender=="female"?"checked":"" }>女
                         </td>
                     </TR>
                     <TR>
                         <td>联系人办公电话 ：</td>
                         <td>
-                            <INPUT class=textbox id=sChannel2 style="WIDTH: 180px" maxLength=50 name="lkmPhone"
-                                   value="${linkMan.lkmPhone }">
+                            <INPUT class=textbox id=sChannel2 style="WIDTH: 180px" maxLength=50 name="linkman.lkmPhone"
+                                   value="${linkman.lkmPhone}">
                         </td>
                         <td>联系人手机 ：</td>
                         <td>
-                            <INPUT class=textbox id=sChannel2 style="WIDTH: 180px" maxLength=50 name="lkmMobile"
-                                   value="${linkMan.lkmMobile }">
+                            <INPUT class=textbox id=sChannel2 style="WIDTH: 180px" maxLength=50 name="linkman.lkmMobile"
+                                   value="${linkman.lkmMobile}">
                         </td>
                     </TR>
                     <TR>
                         <td>联系人邮箱 ：</td>
                         <td>
-                            <INPUT class=textbox id=sChannel2 style="WIDTH: 180px" maxLength=50 name="lkmEmail"
-                                   value="${linkMan.lkmEmail }">
+                            <INPUT class=textbox id=sChannel2 style="WIDTH: 180px" maxLength=50 name="linkman.lkmEmail"
+                                   value="${linkman.lkmEmail}">
                         </td>
                         <td>联系人职位 ：</td>
                         <td>
-                            <INPUT class=textbox id=sChannel2 style="WIDTH: 180px" maxLength=50 name="lkmPosition"
-                                   value="${linkMan.lkmPosition }">
+                            <INPUT class=textbox id=sChannel2 style="WIDTH: 180px" maxLength=50
+                                   name="linkman.lkmPosition" value="${linkman.lkmPosition}">
                         </td>
                     </TR>
                     <TR>
                         <td>联系人简介 ：</td>
                         <td colspan="2">
                             <textarea class=textbox id=sChannel2 style="WIDTH: 180px"
-                                      name="lkmMemo">${linkMan.lkmMemo}</textarea>
+                                      name="linkman.lkmMemo">${linkman.lkmMemo}</textarea>
                         </td>
                     </TR>
                     <tr>

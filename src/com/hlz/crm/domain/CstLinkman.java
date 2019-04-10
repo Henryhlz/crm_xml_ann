@@ -1,5 +1,6 @@
 package com.hlz.crm.domain;
 
+
 import javax.persistence.*;
 import java.util.Objects;
 
@@ -17,6 +18,7 @@ public class CstLinkman {
     private String lkmEmail;
     private String lkmPosition;
     private String lkmMemo;
+    private CstCustomer customer;
 
     @Id
     @Column(name = "lkm_id")
@@ -96,6 +98,17 @@ public class CstLinkman {
 
     public void setLkmMemo(String lkmMemo) {
         this.lkmMemo = lkmMemo;
+    }
+
+    //多对一关系映射：多个联系人可以是属于一个客户
+    @ManyToOne
+    @JoinColumn(name = "lkm_cust_id", referencedColumnName = "cust_id")
+    public CstCustomer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(CstCustomer customer) {
+        this.customer = customer;
     }
 
     @Override

@@ -55,4 +55,11 @@ public interface ICustomerService {
      * @return
      */
     CstCustomer findById(long custId);
+
+    /**
+     * 投影查询客户列表
+     *
+     * @return
+     */
+    List<CstCustomer> findAllCustomer();
 }

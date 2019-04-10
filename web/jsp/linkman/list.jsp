@@ -1,5 +1,5 @@
 ﻿<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="/struts-tags" prefix="s" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -9,18 +9,21 @@
     <LINK href="${pageContext.request.contextPath }/css/Manage.css" type=text/css rel=stylesheet>
     <script type="text/javascript" src="${pageContext.request.contextPath }/js/jquery-1.4.4.min.js"></script>
     <SCRIPT language=javascript>
-        function to_page(page) {
-            if (page) {
-                $("#page").val(page);
+        function deleteLinkMan(linkId) {
+            var sure = window.confirm("确定删除吗");
+            if (sure) {
+                window.location.href = "${pageContext.request.contextPath }/linkman/deleteLinkMan.action?linkman.lkmId=" + linkId;
             }
-            document.customerForm.submit();
+
+
         }
     </SCRIPT>
     <META content="MSHTML 6.00.2900.3492" name=GENERATOR>
 </HEAD>
 <BODY>
+<s:debug></s:debug>
 <FORM id="customerForm" name="customerForm"
-      action="${pageContext.request.contextPath }/linkman/linkmanServlet?method=listLinkMan" method=post>
+      action="${pageContext.request.contextPath }/linkman/findAllLinkMan.action" method=post>
     <TABLE cellSpacing=0 cellPadding=0 width="98%" border=0>
         <TBODY>
         <TR>
@@ -52,9 +55,29 @@
                             <TABLE cellSpacing=0 cellPadding=2 border=0>
                                 <TBODY>
                                 <TR>
-                                    <TD>联系人名称：</TD>
-                                    <TD><INPUT class=textbox id=sChannel2 style="WIDTH: 80px" maxLength=50
-                                               name="lkmName"></TD>
+                                    <td>联系人名称：</td>
+                                    <td>
+                                        <INPUT class=textbox id=sChannel2 style="WIDTH: 180px" maxLength=50
+                                               name="linkman.lkmName" value="${linkman.lkmName}">
+                                    </td>
+                                    <td>联系人职位 ：</td>
+                                    <td>
+                                        <INPUT class=textbox id=sChannel2 style="WIDTH: 180px" maxLength=50
+                                               name="linkman.lkmPosition" value="${linkman.lkmPosition}">
+                                    </td>
+                                    <td>所属客户：</td>
+                                    <td colspan="3">
+                                        <s:select name="linkman.customer.custId" list="customers"
+                                                  listKey="custId" listValue="custName"
+                                                  headerKey="" headerValue="---请选择---"
+                                                  class="textbox" style="WIDTH: 180px" id="sChannel2"></s:select>
+                                    </td>
+                                    <td>联系人性别：</td>
+                                    <td>
+                                        <s:select name="linkman.lkmGender" list="#{'male':'男','female':'女'}"
+                                                  headerKey="" headerValue="---请选择---"
+                                                  class="textbox" style="WIDTH: 180px" id="sChannel2"></s:select>
+                                    </td>
                                     <TD><INPUT class=button id=sButton2 type=submit value=" 筛选 " name=sButton2></TD>
                                 </TR>
                                 </TBODY>
@@ -75,27 +98,32 @@
                                     <TD>邮箱</TD>
                                     <TD>职位</TD>
                                     <TD>备注</TD>
-                                    <!-- <TD>所属客户</TD> -->
+                                    <TD>所属客户</TD>
                                     <TD>操作</TD>
                                 </TR>
-                                <c:forEach items="${linkmans }" var="linkman">
+                                <s:iterator value="linkmans">
                                     <TR
                                             style="FONT-WEIGHT: normal; FONT-STYLE: normal; BACKGROUND-COLOR: white; TEXT-DECORATION: none">
-                                        <TD>${linkman.lkmName }</TD>
-                                        <TD>${linkman.lkmGender }</TD>
-                                        <TD>${linkman.lkmPhone }</TD>
-                                        <TD>${linkman.lkmMobile }</TD>
-                                        <TD>${linkman.lkmEmail }</TD>
-                                        <TD>${linkman.lkmPosition }</TD>
-                                        <TD>${linkman.lkmMemo }</TD>
-                                            <%-- <TD>${linkman.lkmCustomer.custName}</TD> --%>
+                                        <TD>${lkmName }</TD>
                                         <TD>
-                                            <a href="${pageContext.request.contextPath }/linkman/LinkManServlet?method=editLinkManUI&lkmId=${linkman.lkmId}">修改</a>
+                                            <s:if test="lkmGender=='male'">男</s:if>
+                                            <s:else>女</s:else>
+                                        </TD>
+                                        <TD>${lkmPhone }</TD>
+                                        <TD>${lkmMobile }</TD>
+                                        <TD>${lkmEmail }</TD>
+                                        <TD>${lkmPosition }</TD>
+                                        <TD>${lkmMemo }</TD>
+                                        <TD>${customer.custName}</TD>
+                                        <TD>
+                                            <s:a action="editLinkManPage" namespace="/linkman">
+                                                <s:param value="%{lkmId}" name="linkman.lkmId"></s:param>
+                                                修改</s:a>
                                             &nbsp;&nbsp;
-                                            <a href="${pageContext.request.contextPath }/linkman/LinkManServlet?method=deleteLinkMan&lkmId=${linkman.lkmId}">删除</a>
+                                            <s:a href="javascript:deleteLinkMan('%{lkmId}')">删除</s:a>
                                         </TD>
                                     </TR>
-                                </c:forEach>
+                                </s:iterator>
                                 </TBODY>
                             </TABLE>
                         </TD>

@@ -8,8 +8,6 @@ import com.hlz.crm.service.ICustomerService;
 import org.hibernate.criterion.DetachedCriteria;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Propagation;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -19,8 +17,6 @@ import java.util.List;
  * @author Henryhlz
  */
 @Service
-/*开启事务*/
-@Transactional(readOnly = true, propagation = Propagation.SUPPORTS)
 public class CustomerServiceImpl implements ICustomerService {
 
     @Autowired
@@ -33,7 +29,6 @@ public class CustomerServiceImpl implements ICustomerService {
      * 保存客户
      */
     @Override
-    @Transactional(readOnly = false, propagation = Propagation.REQUIRED)
     public void saveCustomer(CstCustomer customer) {
         customerDao.saveCustomer(customer);
     }
@@ -73,7 +68,6 @@ public class CustomerServiceImpl implements ICustomerService {
      * @param custId
      */
     @Override
-    @Transactional(readOnly = false, propagation = Propagation.REQUIRED)
     public void removeCustomer(long custId) {
         customerDao.removeCustomer(custId);
     }
@@ -84,7 +78,6 @@ public class CustomerServiceImpl implements ICustomerService {
      * @param customer
      */
     @Override
-    @Transactional(readOnly = false, propagation = Propagation.REQUIRED)
     public void editCustomer(CstCustomer customer) {
         customerDao.editCustomer(customer);
     }
@@ -96,5 +89,15 @@ public class CustomerServiceImpl implements ICustomerService {
     @Override
     public CstCustomer findById(long custId) {
         return customerDao.findById(custId);
+    }
+
+    /**
+     * 投影查询客户列表
+     *
+     * @return
+     */
+    @Override
+    public List<CstCustomer> findAllCustomer() {
+        return customerDao.findAll();
     }
 }

@@ -1,7 +1,9 @@
 package com.hlz.crm.domain;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 /**
  * @author Henryhlz
@@ -16,6 +18,7 @@ public class CstCustomer {
     private BaseDict custLevel;
     private String custAddress;
     private String custPhone;
+    private Set<CstLinkman> linkmanSet = new HashSet<CstLinkman>(0);
 
     @Id
     @Column(name = "cust_id")
@@ -88,6 +91,23 @@ public class CstCustomer {
 
     public void setCustPhone(String custPhone) {
         this.custPhone = custPhone;
+    }
+
+    @OneToMany(mappedBy = "customer")
+    public Set<CstLinkman> getLinkmanSet() {
+        return linkmanSet;
+    }
+
+    public void setLinkmanSet(Set<CstLinkman> linkmanSet) {
+        this.linkmanSet = linkmanSet;
+    }
+
+    public CstCustomer() {
+    }
+
+    public CstCustomer(long custId, String custName) {
+        this.custId = custId;
+        this.custName = custName;
     }
 
     @Override
