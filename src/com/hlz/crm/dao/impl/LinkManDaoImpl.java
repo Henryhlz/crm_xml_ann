@@ -3,6 +3,7 @@ package com.hlz.crm.dao.impl;
 import com.hlz.crm.dao.ILinkManDao;
 import com.hlz.crm.domain.CstLinkman;
 import org.hibernate.criterion.DetachedCriteria;
+import org.hibernate.criterion.Projections;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate5.HibernateTemplate;
 import org.springframework.stereotype.Repository;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 /**
+ * 联系人持久层实现类
  * @author Henryhlz
  */
 @Repository
@@ -38,15 +40,32 @@ public class LinkManDaoImpl implements ILinkManDao {
     }
 
     /**
+     * 查询总数
+     *
+     * @param criteria
+     * @return
+     */
+    @Override
+    public int findTotalRecords(DetachedCriteria criteria) {
+        criteria.setProjection(Projections.count("lkmId"));
+        List<Long> longs = (List<Long>) hibernateTemplate.findByCriteria(criteria);
+        return longs.isEmpty() ? 0 : longs.get(0).intValue();
+    }
+
+    /**
      * 根据条件查询联系人
      *
      * @param criteria
-     * @return List<CstLinkman>
+     * @param firstResult 开始行数
+     * @param maxResults  返回多少数量
+     * @return
      */
     @Override
-    public List<CstLinkman> findAll(DetachedCriteria criteria) {
-        return (List<CstLinkman>) hibernateTemplate.findByCriteria(criteria);
+    public List<CstLinkman> findAll(DetachedCriteria criteria, int firstResult, int maxResults) {
+        criteria.setProjection(null);
+        return (List<CstLinkman>) hibernateTemplate.findByCriteria(criteria, firstResult, maxResults);
     }
+
 
     /**
      * 删除联系人

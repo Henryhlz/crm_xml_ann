@@ -32,10 +32,10 @@ public class Test03SpringHibernate {
 
     @Test
     public void testfindAll() {
-        DetachedCriteria criteria = DetachedCriteria.forClass(CstCustomer.class);
-        List list = customerService.findAllCustomer(criteria);
-        for (Object o : list) {
-            System.out.println(o);
-        }
+//        DetachedCriteria criteria = DetachedCriteria.forClass(CstCustomer.class);
+//        List list = customerService.findAllCustomer(criteria);
+//        for (Object o : list) {
+//            System.out.println(o);
+//        }
     }
 }

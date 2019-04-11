@@ -3,6 +3,7 @@ package com.hlz.crm.action;
 import com.hlz.crm.domain.BaseDict;
 import com.hlz.crm.domain.CstCustomer;
 import com.hlz.crm.service.ICustomerService;
+import com.hlz.framework.commons.Page;
 import com.opensymphony.xwork2.ActionSupport;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.struts2.convention.annotation.*;
@@ -31,6 +32,8 @@ public class CustomerAction extends ActionSupport {
     private ICustomerService customerService;
     private List<BaseDict> custSources;
     private List<BaseDict> custLevels;
+    private int pageNum;
+    private Page page;
 
 
     /**
@@ -103,8 +106,9 @@ public class CustomerAction extends ActionSupport {
      */
     @Action("findAllCustomer")
     public String findAllCustomer() {
+        //定义离线对象
         DetachedCriteria criteria = DetachedCriteria.forClass(CstCustomer.class);
-        //2.拼装查询条件
+        //拼装查询条件
         //判断是否输入了客户名称
         if (StringUtils.isNoneBlank(customer.getCustName())) {
             criteria.add(Restrictions.like("custName", "%" + customer.getCustName() + "%"));
@@ -121,7 +125,8 @@ public class CustomerAction extends ActionSupport {
         if (customer.getCustLevel() != null && StringUtils.isNoneBlank(customer.getCustLevel().getDictId())) {
             criteria.add(Restrictions.eq("custLevel.dictId", customer.getCustLevel().getDictId()));
         }
-        customers = customerService.findAllCustomer(criteria);
+        //根据离线对象查询客户信息
+        page = customerService.findAllCustomer(criteria, pageNum);
         //获取所有客户信息来源
         custSources = customerService.findAllCustSource();
         //获取所有客户级别
@@ -159,5 +164,21 @@ public class CustomerAction extends ActionSupport {
 
     public void setCustLevels(List<BaseDict> custLevels) {
         this.custLevels = custLevels;
+    }
+
+    public int getPageNum() {
+        return pageNum;
+    }
+
+    public void setPageNum(int pageNum) {
+        this.pageNum = pageNum;
+    }
+
+    public Page getPage() {
+        return page;
+    }
+
+    public void setPage(Page page) {
+        this.page = page;
     }
 }

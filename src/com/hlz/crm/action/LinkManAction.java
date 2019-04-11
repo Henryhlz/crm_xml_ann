@@ -4,6 +4,7 @@ import com.hlz.crm.domain.CstCustomer;
 import com.hlz.crm.domain.CstLinkman;
 import com.hlz.crm.service.ICustomerService;
 import com.hlz.crm.service.ILinkManService;
+import com.hlz.framework.commons.Page;
 import com.opensymphony.xwork2.ActionSupport;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.struts2.convention.annotation.*;
@@ -29,12 +30,13 @@ import java.util.List;
 })
 public class LinkManAction extends ActionSupport {
     private CstLinkman linkman = new CstLinkman();
-    private List<CstLinkman> linkmans;
     private List<CstCustomer> customers;
     @Autowired
     private ILinkManService linkManService;
     @Autowired
     private ICustomerService customerService;
+    private int pageNum;
+    private Page page;
 
     /**
      * 编辑联系人页面
@@ -120,7 +122,7 @@ public class LinkManAction extends ActionSupport {
         }
 
         //查询结果
-        linkmans = linkManService.findAllLinkMan(criteria);
+        page = linkManService.findAllLinkMan(criteria, pageNum);
         //查询所有客户
         customers = customerService.findAllCustomer();
         return "findAllLinkManPage";
@@ -134,19 +136,27 @@ public class LinkManAction extends ActionSupport {
         this.linkman = linkman;
     }
 
-    public List<CstLinkman> getLinkmans() {
-        return linkmans;
-    }
-
-    public void setLinkmans(List<CstLinkman> linkmans) {
-        this.linkmans = linkmans;
-    }
-
     public List<CstCustomer> getCustomers() {
         return customers;
     }
 
     public void setCustomers(List<CstCustomer> customers) {
         this.customers = customers;
+    }
+
+    public int getPageNum() {
+        return pageNum;
+    }
+
+    public void setPageNum(int pageNum) {
+        this.pageNum = pageNum;
+    }
+
+    public Page getPage() {
+        return page;
+    }
+
+    public void setPage(Page page) {
+        this.page = page;
     }
 }

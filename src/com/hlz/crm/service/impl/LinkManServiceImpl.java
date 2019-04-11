@@ -3,6 +3,7 @@ package com.hlz.crm.service.impl;
 import com.hlz.crm.dao.ILinkManDao;
 import com.hlz.crm.domain.CstLinkman;
 import com.hlz.crm.service.ILinkManService;
+import com.hlz.framework.commons.Page;
 import org.hibernate.criterion.DetachedCriteria;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -42,11 +43,25 @@ public class LinkManServiceImpl implements ILinkManService {
      *
      * @param criteria
      * @return List<CstLinkman>
+     * @return num
      */
     @Override
-    public List<CstLinkman> findAllLinkMan(DetachedCriteria criteria) {
-        return linkManDao.findAll(criteria);
+    public Page findAllLinkMan(DetachedCriteria criteria, int num) {
+        Page page = getPage(criteria, num);
+        List<CstLinkman> linkmanList = linkManDao.findAll(criteria, page.getStartIndex(), page.getPageSize());
+        page.setRecords(linkmanList);
+        return page;
     }
+
+    private Page getPage(DetachedCriteria criteria, int num) {
+        int currentPageNum = 1;
+        if (num > 1) {
+            currentPageNum = num;
+        }
+        int totalRecords = linkManDao.findTotalRecords(criteria);
+        return new Page(currentPageNum, totalRecords);
+    }
+
 
     /**
      * 删除联系人

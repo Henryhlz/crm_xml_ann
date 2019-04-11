@@ -1,6 +1,7 @@
 package com.hlz.crm.service;
 
 import com.hlz.crm.domain.CstLinkman;
+import com.hlz.framework.commons.Page;
 import org.hibernate.criterion.DetachedCriteria;
 
 import java.util.List;
@@ -30,8 +31,9 @@ public interface ILinkManService {
      *
      * @param criteria
      * @return List<CstLinkman>
+     * @return num
      */
-    List<CstLinkman> findAllLinkMan(DetachedCriteria criteria);
+    Page findAllLinkMan(DetachedCriteria criteria, int num);
 
     /**
      * 删除联系人

@@ -101,7 +101,7 @@
                                     <TD>所属客户</TD>
                                     <TD>操作</TD>
                                 </TR>
-                                <s:iterator value="linkmans">
+                                <s:iterator value="page.records">
                                     <TR
                                             style="FONT-WEIGHT: normal; FONT-STYLE: normal; BACKGROUND-COLOR: white; TEXT-DECORATION: none">
                                         <TD>${lkmName }</TD>
@@ -128,28 +128,13 @@
                             </TABLE>
                         </TD>
                     </TR>
-                    <%-- <TR>
-                        <TD>
-                            <SPAN id=pagelink>
-                                <DIV style="LINE-HEIGHT: 20px; HEIGHT: 20px; TEXT-ALIGN: right">
-                                    共[<B>${total}</B>]条记录,[<B>${totalPage}</B>]页
-                                    ,每页显示
-                                    <select name="pageSize">
-                                    <option value="1" <c:if test="${pageSize==1 }">selected</c:if>>1</option>
-                                    <option value="30" <c:if test="${pageSize==30 }">selected</c:if>>30</option>
-                                    </select>
-                                    条
-                                    [<A href="javascript:to_page(${page-1})">前一页</A>]
-                                    <B>${page}</B>
-                                    [<A href="javascript:to_page(${page+1})">后一页</A>]
-                                    到
-                                    <input type="text" size="3" id="page" name="page" />
-                                    页
-                                    <input type="button" value="Go" onclick="to_page()"/>
-                                </DIV>
-                            </SPAN>
+                    <TR>
+                        <TD align="center">
+                            <%--分页的开始 --%>
+                            <%@ include file="/jsp/commons/page.jsp" %>
+                            <%--分页的结束 --%>
                         </TD>
-                    </TR> --%>
+                    </TR>
                     </TBODY>
                 </TABLE>
             </TD>

@@ -2,6 +2,7 @@ package com.hlz.crm.service;
 
 import com.hlz.crm.domain.BaseDict;
 import com.hlz.crm.domain.CstCustomer;
+import com.hlz.framework.commons.Page;
 import org.hibernate.criterion.DetachedCriteria;
 
 import java.util.List;
@@ -20,8 +21,9 @@ public interface ICustomerService {
     /**
      * 查询所有客户
      * @param criteria
+     * @param num 页数
      */
-    List<CstCustomer> findAllCustomer(DetachedCriteria criteria);
+    Page findAllCustomer(DetachedCriteria criteria, int num);
 
     /**
      * 查询所有客户级别

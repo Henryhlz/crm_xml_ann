@@ -6,6 +6,7 @@ import org.hibernate.criterion.DetachedCriteria;
 import java.util.List;
 
 /**
+ * 联系人持久层接口
  * @author Henryhlz
  */
 public interface ILinkManDao {
@@ -24,12 +25,21 @@ public interface ILinkManDao {
     void updateLinkMan(CstLinkman linkman);
 
     /**
-     * 根据条件查询联系人
+     * 查询总数
      *
      * @param criteria
-     * @return List<CstLinkman>
+     * @return
      */
-    List<CstLinkman> findAll(DetachedCriteria criteria);
+    int findTotalRecords(DetachedCriteria criteria);
+
+    /**
+     * 根据条件查询联系人
+     * @param criteria
+     * @param firstResult 开始行数
+     * @param maxResults 返回多少数量
+     * @return
+     */
+    List<CstLinkman> findAll(DetachedCriteria criteria, int firstResult, int maxResults);
 
     /**
      * 删除联系人

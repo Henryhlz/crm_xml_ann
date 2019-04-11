@@ -13,7 +13,16 @@ import java.util.List;
 public interface ICustomerDao {
 
     /**
+     * 按条件查询记录数
+     *
+     * @param criteria
+     * @return
+     */
+    int findTotalRecords(DetachedCriteria criteria);
+
+    /**
      * 保存客户
+     * @param customer
      */
     void saveCustomer(CstCustomer customer);
 
@@ -21,7 +30,7 @@ public interface ICustomerDao {
      * 查询所有客户
      * @param criteria
      */
-    List<CstCustomer> findAllCustomer(DetachedCriteria criteria);
+    List<CstCustomer> findAllCustomer(DetachedCriteria criteria, int firstResult, int maxResults );
 
     /**
      * 删除客户
